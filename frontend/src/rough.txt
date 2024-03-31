@@ -1,0 +1,171 @@
+import React, { useState, useEffect } from 'react';
+import './Room.css';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import { Link } from 'react-router-dom';
+import Loader from '../../components/Loader/Loader';
+import Error from '../../components/Loader/Error';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import moment from 'moment';
+
+const Room = () => {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [rooms, setRooms] = useState([]);
+  const [showModal, setShowModal] = useState([]);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [duplicateRooms, setDuplicateRooms] = useState([]);
+  const [searchkey,setsearchkey]=useState('')
+  const [type,settype]=('all')
+
+  useEffect(() => {
+    setLoading(true);
+    fetch('http://localhost:5000/api/room')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch room data');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setRooms(data);
+        setDuplicateRooms(data);
+        setLoading(false);
+        setShowModal(Array(data.length).fill(false));
+      })
+      .catch(err => {
+        console.error(err);
+        setError(true);
+        setLoading(false);
+      });
+  }, []);
+
+  const handleShow = index => {
+    const newShowModal = [...showModal];
+    newShowModal[index] = true;
+    setShowModal(newShowModal);
+  };
+
+  const handleClose = index => {
+    const newShowModal = [...showModal];
+    newShowModal[index] = false;
+    setShowModal(newShowModal);
+  };
+
+  const changestart = startDate => {
+    setStartDate(startDate);
+  };
+
+  const changeEnd = endDate => {
+    setEndDate(endDate);
+  };
+
+  const filterAvailableRooms = () => {
+    const filteredRooms = duplicateRooms.filter(room => {
+      for (const booking of room.currentbookings) {
+        const bookingStartDate = moment(booking.startDate, 'DD-MM-YYYY');
+        const bookingEndDate = moment(booking.endDate, 'DD-MM-YYYY');
+        const selectedStartDate = moment(startDate).startOf('day');
+        const selectedEndDate = moment(endDate).endOf('day');
+
+        if (
+          (selectedStartDate.isBetween(bookingStartDate, bookingEndDate, undefined, '[]') ||
+            selectedEndDate.isBetween(bookingStartDate, bookingEndDate, undefined, '[]')) ||
+          (bookingStartDate.isBetween(selectedStartDate, selectedEndDate, undefined, '[]') ||
+            bookingEndDate.isBetween(selectedStartDate, selectedEndDate, undefined, '[]'))
+        ) {
+          return false; // Room is booked for the selected date range
+        }
+      }
+      return true; // Room is available
+    });
+    setRooms(filteredRooms);
+  };
+
+  useEffect(() => {
+    filterAvailableRooms();
+  }, [startDate, endDate]);
+
+ const filterBySearch=()=>{
+  
+ }
+
+  return (
+    <div className='m-5'>
+      {loading ? (
+        <Loader />
+      ) : rooms.length > 0 ? (
+        <>
+          <div className="row mb-5 bs">
+            <div className="col-md-12">
+              <div className="det">
+                <div className="det1">
+                  <label>Start Date:</label>
+                  <DatePicker id="datepicker" onChange={changestart} selected={startDate} dateFormat="dd/MM/yyyy" />
+                </div>
+                <div className="det2">
+                  <label>End Date:</label>
+                  <DatePicker onChange={changeEnd} dateFormat="dd/MM/yyyy" selected={endDate} />
+                </div>
+                <div className="det3">
+                <label>Search Rooms:</label>
+                  <input style={{width:'400px'}} type='text' value={searchkey} onChange={(e)=>{setsearchkey(e.target.value)}} onKeyUp={filterBySearch} placeholder='search rooms' />
+                </div>
+                <div className="det4">
+                  <label>Room Type:</label>
+                  <select style={{height:'27px',width:'140px'}}>
+                    <option value="all">All</option>
+                    <option value="delux">Delux</option>
+                    <option value="non-delux">Non-Delux</option>
+                    <option value="economy">Economy</option>
+                    <option value="royal">Royal</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {rooms.map((room, index) => (
+            <div key={index} className="projcard-container mt-3">
+              <div className="projcard projcard-blue">
+                <div className="projcard-innerbox">
+                  <img className="projcard-img" src={room.imgurls[0]} alt={room.roomType} />
+                  <div className="projcard-textbox">
+                    <div className="projcard-title">{room.roomType}</div>
+                    <div className="projcard-subtitle">₹ {room.rentperday}</div>
+                    <div className="projcard-bar"></div>
+                    <div className="projcard-description">{room.description}</div>
+                    <div className="projcard-tagbox">
+                      <span className="projcard-tag">{room.phoneNo}</span>
+                      <span className="projcard-tag">{room.maximumMembers}</span>
+                    </div>
+                    <div className='projcard-btn'>
+                      {(startDate && endDate) && (
+                        <button><Link to={`/bookingScreen/${room._id}/${startDate}/${endDate}`}>Book Now</Link></button>
+                      )}
+                    </div>
+                    <div className='projcard-btn2'>
+                      <Button onClick={() => handleShow(index)}>View Details</Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+
+          {rooms.map((room, index) => (
+            <Modal key={index} show={showModal[index]} onHide={() => handleClose(index)} size="lg">
+              {/* Your modal content */}
+            </Modal>
+          ))}
+        </>
+      ) : error ? (
+        <Error />
+      ) : null}
+    </div>
+  );
+}
+
+export default Room;

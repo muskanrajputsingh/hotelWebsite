@@ -1,0 +1,22 @@
+p{
+    font-size:20px;
+}
+.color{
+    color: black;
+}
+.c-btn button{
+    background-color: black;
+    color: rgb(204, 202, 202);
+    height: 40px;
+    width: 150px;
+    border-radius: 6px;
+    transition:.2s all ease-out;
+    font-weight:700;
+}
+.c-btn button :hover{
+    color: rgb(204, 202, 202) !important;
+    transform: scale(0.7);
+}
+tab{
+    font-size: 25px;
+}

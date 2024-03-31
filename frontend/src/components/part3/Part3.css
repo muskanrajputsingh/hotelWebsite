@@ -1,0 +1,135 @@
+.part3-container{
+    height:100vh;
+    width: 100%;
+    background-color: rgb(54, 53, 53);
+    box-sizing: border-box;
+}
+.part3-container h1{
+    text-align: center;
+    color: wheat;
+    text-transform: uppercase;
+    font-weight: 800;
+    padding:30px 0;
+}
+.part3-one, .part3-two{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    align-items: center;
+    margin:0 30px;
+}
+.partbox-one img{
+height: 300px;
+width:600px;
+border:2px solid white;
+border-radius:6px;
+}
+.partbox-four img{
+    height: 300px;
+    width: 600px;
+    border:2px solid white;
+    border-radius:6px;
+
+}
+.partbox-two h2{
+    text-transform: uppercase;
+    color:grey;
+}
+.partbox-two p{
+    color:rgb(153, 152, 152);
+    font-size:15.5px;
+}
+.partbox-three h2{
+    text-transform: uppercase;
+    color:grey;
+}
+.partbox-three p{
+    color:rgb(153, 152, 152);
+    font-size:15.5px;
+
+}
+.partbox-three button{
+    width:120px;
+    height: 40px;
+    background: transparent;
+    border: 2px solid black;
+    color:wheat;
+    text-transform: capitalize;
+    font-weight:600;
+}
+.partbox-three button:hover{
+    background-color: black;
+    color: aliceblue;
+}
+.partbox-two button{
+    width:120px;
+    height: 40px;
+    background: transparent;
+    border: 2px solid black;
+    color:wheat;
+    text-transform: capitalize;
+    font-weight:600;
+}
+.partbox-two button:hover{
+    background-color: black;
+    color: aliceblue;
+}
+
+@media (max-width:800px) {
+    .part3-container{
+        height: 145vh;
+    }
+    .part3-one, .part3-two{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .partbox-one img{
+        width:100%;
+    }
+    .partbox-two p{
+        font-size: 12px;
+    }
+    .partbox-four img{
+        width:100%;
+    }
+    .partbox-three p{
+        font-size: 12px;
+    }
+}
+@media (max-width:500px) {
+    .part3-container{
+        height: 155vh;
+    }
+    .part3-one, .part3-two{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .partbox-one img{
+        width:100%;
+    }
+    .partbox-two p{
+        font-size: 12px;
+    }
+    .partbox-four img{
+        width:100%;
+    }
+    .partbox-three p{
+        font-size: 12px;
+    }
+}
+@media (max-width:1065px) {
+    .part3-container{
+        height: 155vh;
+    }
+    .part3-one, .part3-two{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .partbox-one img{
+        width:100%;
+    }
+    .partbox-four img{
+        width:100%;
+    }
+   
+}

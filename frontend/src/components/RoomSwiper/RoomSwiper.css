@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Roboto+Condensed&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+.roomslider{
+    height: 80vh;
+    width: 100%;
+    background-color:#e8ded9;
+}
+.room-carousel{
+    position: relative;
+    overflow: hidden;
+    padding: 26px;
+}
+.room-container{
+    padding:0 10px;
+    display: flex;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+.pre-btn,.next-btn{
+    border: none;
+    outline: none;
+    width: 70px;
+    height:100%;
+    position: absolute;
+    background-color: #e8ded9;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.next-btn{
+    right:20px;
+    /* right: 0; */
+}
+.next-btn p,.pre-btn p{
+    font-size:50px;
+    background-color:#d0b1a2;
+    box-shadow: 0px 0px 10px 1px palevioletred;
+    border-radius: 10px;
+    color:palevioletred;
+    width: 50px;
+    height: 50px;
+}
+.slider-head h3{
+    color: #ac927b;
+    font-family:"Cormorant Garamond", Helvetica, Arial, sans-serif;
+    font-size: 23px;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 40px;
+}
