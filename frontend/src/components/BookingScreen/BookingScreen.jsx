@@ -29,7 +29,7 @@ const BookingScreen = () => {
 
     const fetchRoomDetails = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/api/room/${roomid}`);
+            const response = await axios.get(`http://localhost:12000/api/room/${roomid}`);
             if (!response.data || !response.data.length) {
                 throw new Error('Room data not found');
             }
@@ -65,7 +65,8 @@ const BookingScreen = () => {
         const year = selectedDate.getFullYear().toString().slice(-2);
         return `${day}-${month}-${year}`;
     };
-
+    
+//booking
     const onToken = async (token) => {
         const room = rooms[0];
         const bookingDetails = {
@@ -82,7 +83,7 @@ const BookingScreen = () => {
         };
 
         try {
-            const result = await axios.post('http://localhost:5000/api/bookings', bookingDetails);
+            const result = await axios.post('http://localhost:12000/api/bookings', bookingDetails);
             Swal.fire('Congratulations', 'Your Room Booked Successfully', 'success').then(result => {
                 window.location.href = '/profile';
             });
@@ -102,7 +103,7 @@ const BookingScreen = () => {
                         {rooms.map((room, index) => (
                             <div key={index} className="row justify-content-center mt-5 bs">
                                 <div className="col-md-5">
-                                    <h1>{room && room.name}</h1>
+                                    <h1>{room.name}</h1>
                                     <h6 className='mb-3'><b>Vasanth Nagar,Bangaluru Karnatka,India</b></h6>
                                     <img src={room.imgurls[0]} className='bigimg' alt="Room" />
                                 </div>

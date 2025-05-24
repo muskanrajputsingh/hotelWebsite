@@ -23,6 +23,10 @@ const Hero=()=> {
     return () => clearInterval(intervalId);
   }, []); 
 
+  const room=()=>{
+    window.location.href='/room';
+  }
+
   return (
     <div className="banner" data-aos="zoom-in">
       <div className="slider">
@@ -33,7 +37,7 @@ const Hero=()=> {
           <h1>HOTEL ASTORIA WELCOME'S YOU</h1>
           <h3>Live Good | Eat Good | Look's Good</h3>
           <div className="contentt-btn">
-            <button>BOOK NOW</button>
+            <button onClick={room}>BOOK NOW</button>
           </div>
         </div>
       </div>

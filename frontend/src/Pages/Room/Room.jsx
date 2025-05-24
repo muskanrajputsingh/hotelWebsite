@@ -16,6 +16,7 @@ const Room = () => {
    useEffect(()=>{
     AOS.init({duration:1800})
     })
+    
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [rooms, setRooms] = useState([]);
@@ -28,12 +29,12 @@ const Room = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch('http://localhost:5000/api/room')
+    fetch('http://localhost:12000/api/room')
       .then(response => {
         if (!response.ok) {
           throw new Error('Failed to fetch room data');
         }
-        return response.json();
+        return response.json(); //Extract JSON data from the response
       })
       .then(data => {
         setRooms(data);
@@ -48,13 +49,13 @@ const Room = () => {
       });
   }, []);
 
-  const handleShow = index => {
+    const handleShow = index => {
     const newShowModal = [...showModal];
     newShowModal[index] = true;
     setShowModal(newShowModal);
   };
 
-  const handleClose = index => {
+    const handleClose = index => {
     const newShowModal = [...showModal];
     newShowModal[index] = false;
     setShowModal(newShowModal);
@@ -179,7 +180,7 @@ const Room = () => {
             </Modal.Header>
             <Modal.Body>
             <Carousel>
-            {room.imgurls.map((url, imgIndex) => (
+            {room.imgurls.map((url,imgIndex) => (
             <Carousel.Item key={imgIndex}>
             <img src={url} className="d-block w-100 bigimg"/>
             </Carousel.Item>

@@ -7,7 +7,7 @@ const registerRouter=require('./routes/registerRoute');
 const bookingRouter=require('./routes/bookingRoute');
 
 const cors=require("cors");
-const PORT =process.env.port||5000;
+const PORT = process.env.port||12000;
 
 const app=express();
 
@@ -23,4 +23,3 @@ app.listen(PORT,()=>{
 });
 
 
-// PVyhP4GQ22BxaqbC

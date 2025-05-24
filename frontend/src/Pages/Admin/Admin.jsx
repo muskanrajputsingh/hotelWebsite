@@ -55,7 +55,7 @@ export function Bookings() {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const response  = await axios.get('http://localhost:5000/api/getallbookings');
+        const response  = await axios.get('http://localhost:12000/api/getallbookings');
         setbookings(response.data);
         console.log(setbookings(response.data))
         setLoading(false);
@@ -118,7 +118,7 @@ export function Rooms() {
     useEffect(() => {
       const fetchRooms = async () => {
         try {
-          const response  = await axios.get('http://localhost:5000/api/room');
+          const response  = await axios.get('http://localhost:12000/api/room');
           setrooms(response.data);
           setLoading(false);
         } catch (error) {
@@ -176,7 +176,7 @@ export function Rooms() {
     useEffect(() => {
         const fetchUsers = async () => {
           try {
-            const response  = await axios.get('http://localhost:5000/api/getallusers');
+            const response  = await axios.get('http://localhost:12000/api/getallusers');
             setusers(response.data);
             setLoading(false);
           } catch (error) {
@@ -218,7 +218,7 @@ export function Rooms() {
     )
   }
 //add rooms----------------------------------------------------------------------------------------------------------------------------
-export function Addroom(){
+ export function Addroom(){
   const[loading,setLoading]=useState(false);
   const[name,setname]=useState('')
   const[rentperday,setrentperday]=useState('')
@@ -244,8 +244,8 @@ export function Addroom(){
    console.log(newroom);
 
    try{
-    setLoading(true)
-   const result = await(axios.post('http://localhost:5000/api/addroom',newroom)).data
+   setLoading(true)
+   const result = await(axios.post('http://localhost:12000/api/addroom',newroom)).data
    console.log(result)
    setLoading(false)
    Swal.fire('Congrats',"Your New Room Added Successfully" , 'success').then(result=>{

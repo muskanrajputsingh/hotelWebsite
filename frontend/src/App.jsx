@@ -6,7 +6,6 @@ import Home from './Pages/Home/Home';
 import Footer from './components/Footer/Footer';
 import About from './Pages/About/About';
 import Room from './Pages/Room/Room';
-import Book from './Pages/Book/Book';
 import FacilityCard from './components/FacilityCard/FacilityCard';
 import Contact from './Pages/Contact/Contact';
 import Registration from './Pages/Registration/Registration';
@@ -16,6 +15,7 @@ import Gallery from './Pages/Gallery/Gallery';
 import Login from './Pages/Login/Login';
 import Profile from './components/Profile/Profile';
 import Admin from './Pages/Admin/Admin';
+import RoomSwiper from './components/RoomSwiper/RoomSwiper';
 
 function App() {
   return (
@@ -25,7 +25,6 @@ function App() {
         <Route exact path='/' element={<Home />}  />
         <Route path='/room' element={<Room />} />
         <Route path='/facility' element={<FacilityCard />} />
-        <Route path='/book' element={<Book />}  />
         <Route path='/about' element={<About />}  />
         <Route path='/contact' element={<Contact />}  />
         <Route path='/attraction' element={<Attraction />}  />
@@ -35,8 +34,7 @@ function App() {
         <Route path='/login' exact element={<Login />} />
         <Route path='/profile' exact element={<Profile />} />
         <Route path='/admin' exact element={<Admin />} />
-
-
+        <Route path='/roomswiper' exact element={<RoomSwiper />} />
       </Routes>
     <Footer />
      

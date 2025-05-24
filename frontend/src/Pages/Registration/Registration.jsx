@@ -17,7 +17,7 @@ const Registration = () => {
     // setSuccess(false);
     const { name, email, password } = user;
      try {
-      const res = await fetch("http://localhost:5000/api/register", {
+      const res = await fetch("http://localhost:12000/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -31,13 +31,6 @@ const Registration = () => {
         setTimeout(() => {
           window.location.href = '/';
         }, 2000);
-        // setSuccess(true);
-        // setTimeout(() => {
-        //   setSuccess(false);
-        // }, 2000);
-        // setTimeout(() => {
-        //   console.log("Registration Successful");
-        // }, 2000); 
       } 
       else {
         throw new Error('Registration failed');
