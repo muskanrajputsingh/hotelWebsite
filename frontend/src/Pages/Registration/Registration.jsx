@@ -17,7 +17,7 @@ const Registration = () => {
     // setSuccess(false);
     const { name, email, password } = user;
      try {
-      const res = await fetch("http://localhost:12000/api/register", {
+      const res = await fetch("https://hotelwebsitebackend.onrender.com/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
