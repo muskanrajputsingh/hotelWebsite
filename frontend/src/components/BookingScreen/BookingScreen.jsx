@@ -29,7 +29,7 @@ const BookingScreen = () => {
 
     const fetchRoomDetails = async () => {
         try {
-            const response = await axios.get(`http://localhost:12000/api/room/${roomid}`);
+            const response = await axios.get(`https://hotelwebsitebackend.onrender.com/api/room/${roomid}`);
             if (!response.data || !response.data.length) {
                 throw new Error('Room data not found');
             }
@@ -83,7 +83,7 @@ const BookingScreen = () => {
         };
 
         try {
-            const result = await axios.post('http://localhost:12000/api/bookings', bookingDetails);
+            const result = await axios.post('https://hotelwebsitebackend.onrender.com/api/bookings', bookingDetails);
             Swal.fire('Congratulations', 'Your Room Booked Successfully', 'success').then(result => {
                 window.location.href = '/profile';
             });
