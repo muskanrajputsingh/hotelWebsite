@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const RoomSwiper = () => {
 const [rooms,setrooms]=useState([]);
 useEffect(()=>{
- fetch('http://localhost:12000/api/room')
+ fetch('https://hotelwebsitebackend.onrender.com/api/room')
  .then(response =>{
   if(!response.ok){
     throw new Error('failed to fetch')
