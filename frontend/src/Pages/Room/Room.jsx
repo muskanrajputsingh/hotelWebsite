@@ -29,7 +29,7 @@ const Room = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch('http://localhost:12000/api/room')
+    fetch('https://hotelwebsitebackend.onrender.com/api/room')
       .then(response => {
         if (!response.ok) {
           throw new Error('Failed to fetch room data');
