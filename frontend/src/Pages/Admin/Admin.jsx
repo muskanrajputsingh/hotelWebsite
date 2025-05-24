@@ -55,7 +55,7 @@ export function Bookings() {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const response  = await axios.get('http://localhost:12000/api/getallbookings');
+        const response  = await axios.get('https://hotelwebsitebackend.onrender.com/api/getallbookings');
         setbookings(response.data);
         console.log(setbookings(response.data))
         setLoading(false);
@@ -118,7 +118,7 @@ export function Rooms() {
     useEffect(() => {
       const fetchRooms = async () => {
         try {
-          const response  = await axios.get('http://localhost:12000/api/room');
+          const response  = await axios.get('https://hotelwebsitebackend.onrender.com/api/room');
           setrooms(response.data);
           setLoading(false);
         } catch (error) {
@@ -176,7 +176,7 @@ export function Rooms() {
     useEffect(() => {
         const fetchUsers = async () => {
           try {
-            const response  = await axios.get('http://localhost:12000/api/getallusers');
+            const response  = await axios.get('https://hotelwebsitebackend.onrender.com/api/getallusers');
             setusers(response.data);
             setLoading(false);
           } catch (error) {
@@ -245,7 +245,7 @@ export function Rooms() {
 
    try{
    setLoading(true)
-   const result = await(axios.post('http://localhost:12000/api/addroom',newroom)).data
+   const result = await(axios.post('https://hotelwebsitebackend.onrender.com/api/addroom',newroom)).data
    console.log(result)
    setLoading(false)
    Swal.fire('Congrats',"Your New Room Added Successfully" , 'success').then(result=>{
