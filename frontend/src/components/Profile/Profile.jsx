@@ -54,7 +54,7 @@ export function MyBookings() {
       setLoading(true);
       try {
         const user = JSON.parse(localStorage.getItem("currentUser"));
-        const response = await axios.post('http://localhost:12000/api/getbookingsbyuserid', { userid: user._id });
+        const response = await axios.post('https://hotelwebsitebackend.onrender.com/api/getbookingsbyuserid', { userid: user._id });
         setBookings(response.data);
       } catch (error) {
         console.error(error);
@@ -70,7 +70,7 @@ export function MyBookings() {
   async function cancelBooking(bookingid,roomid){
   try{
     setLoading(true)
-    const result=await axios.post("http://localhost:12000/api/cancelbooking",{bookingid,roomid}).data
+    const result=await axios.post("https://hotelwebsitebackend.onrender.com/api/cancelbooking",{bookingid,roomid}).data
     console.log(result)
     setLoading(false)
     Swal.fire('Your Booking Cancelled Successfully' , 'success').then(result=>{
