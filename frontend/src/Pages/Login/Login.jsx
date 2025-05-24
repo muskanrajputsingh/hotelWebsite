@@ -21,7 +21,7 @@ const Login = () => {
         const { email, password } = user;
     
         try {
-            const res = await fetch("http://localhost:12000/api/login", {
+            const res = await fetch("https://hotelwebsitebackend.onrender.com/api/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
